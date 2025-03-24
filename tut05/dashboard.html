@@ -1,0 +1,218 @@
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+<div class="dashboard-container">
+  <div class="welcome-card">
+    <div class="user-info">
+      <div class="welcome-header">
+        <h1 class="welcome-title">Welcome, <span class="username">{{ username }}</span></h1>
+        <div class="role-badge {% if role == 'admin' %}role-admin{% elif role == 'editor' %}role-editor{% elif role == 'viewer' %}role-viewer{% endif %}">
+          {{ role }}
+        </div>
+      </div>
+      <p class="welcome-subtitle">You're logged in as a <strong>{{ role }}</strong></p>
+    </div>
+    
+    <div class="dashboard-actions">
+      {% if role == "admin" %}
+        <a href="{{ url_for('admin') }}" class="action-button admin-action">
+          <span class="button-icon">⚙️</span>
+          <span class="button-text">Admin Panel</span>
+        </a>
+      {% elif role == "editor" %}
+        <a href="{{ url_for('view_students') }}" class="action-button editor-action">
+          <span class="button-icon">✏️</span>
+          <span class="button-text">Manage Students</span>
+        </a>
+      {% elif role == "viewer" %}
+        <a href="{{ url_for('view_students') }}" class="action-button viewer-action">
+          <span class="button-icon">👁️</span>
+          <span class="button-text">View Student Records</span>
+        </a>
+      {% endif %}
+    </div>
+  </div>
+  
+
+</div>
+
+<style>
+  .dashboard-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 30px 20px;
+    font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  }
+  
+  .welcome-card {
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    padding: 30px;
+    margin-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+  }
+  
+  .welcome-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 5px;
+  }
+  
+  .welcome-title {
+    font-size: 28px;
+    font-weight: 600;
+    color: #2c3e50;
+    margin: 0;
+  }
+  
+  .username {
+    color: #3867d6;
+  }
+  
+  .role-badge {
+    display: inline-block;
+    padding: 8px 15px;
+    border-radius: 50px;
+    font-size: 14px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  
+  .role-admin {
+    background-color: #3867d6;
+    color: white;
+  }
+  
+  .role-editor {
+    background-color: #f39c12;
+    color: white;
+  }
+  
+  .role-viewer {
+    background-color: #3498db;
+    color: white;
+  }
+  
+  .welcome-subtitle {
+    color: #6c757d;
+    font-size: 16px;
+    margin: 0;
+  }
+  
+  .dashboard-actions {
+    margin-top: 5px;
+  }
+  
+  .action-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 28px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .admin-action {
+    background-color: #3867d6;
+    color: white;
+  }
+  
+  .admin-action:hover {
+    background-color: #2d56b3;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(56, 103, 214, 0.25);
+  }
+  
+  .editor-action {
+    background-color: #f39c12;
+    color: white;
+  }
+  
+  .editor-action:hover {
+    background-color: #e67e22;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(243, 156, 18, 0.25);
+  }
+  
+  .viewer-action {
+    background-color: #3498db;
+    color: white;
+  }
+  
+  .viewer-action:hover {
+    background-color: #2980b9;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(52, 152, 219, 0.25);
+  }
+  
+  .button-icon {
+    font-size: 18px;
+  }
+  
+  .quick-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+  }
+  
+  .stat-card {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    padding: 25px 20px;
+    text-align: center;
+    transition: transform 0.3s ease;
+  }
+  
+  .stat-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .stat-value {
+    font-size: 34px;
+    font-weight: 700;
+    color: #3867d6;
+    margin-bottom: 10px;
+  }
+  
+  .stat-label {
+    font-size: 16px;
+    color: #6c757d;
+    font-weight: 500;
+  }
+  
+  @media (max-width: 768px) {
+    .welcome-card {
+      padding: 25px;
+    }
+    
+    .welcome-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+    }
+    
+    .welcome-title {
+      font-size: 24px;
+    }
+    
+    .action-button {
+      display: flex;
+      width: 100%;
+      justify-content: center;
+      margin-top: 10px;
+    }
+  }
+</style>
+{% endblock %}

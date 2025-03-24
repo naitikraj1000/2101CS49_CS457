@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+{% block title %}Login{% endblock %}
+{% block content %}
+<div class="login-container">
+    <h2 class="login-title">Welcome Back</h2>
+    <div class="login-card">
+        <form method="POST" class="login-form">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" placeholder="Enter your username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="Enter your password" required>
+            </div>
+            <button type="submit" class="login-button">Sign In</button>
+        </form>
+        <div class="login-footer">
+            <p>Don't have an account? <a href="{{ url_for('register') }}" class="register-link">Register</a></p>
+        </div>
+    </div>
+</div>
+
+<style>
+    .login-container {
+        max-width: 400px;
+        margin: 60px auto;
+        padding: 20px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    
+    .login-title {
+        text-align: center;
+        color: #333;
+        margin-bottom: 30px;
+        font-weight: 600;
+    }
+    
+    .login-card {
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        padding: 30px;
+    }
+    
+    .login-form {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .form-group label {
+        font-size: 14px;
+        font-weight: 500;
+        color: #555;
+    }
+    
+    .form-group input {
+        padding: 12px 15px;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        font-size: 15px;
+        transition: border-color 0.3s;
+    }
+    
+    .form-group input:focus {
+        outline: none;
+        border-color: #4a90e2;
+        box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
+    }
+    
+    .login-button {
+        background-color: #4a90e2;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        padding: 14px;
+        font-size: 16px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        margin-top: 10px;
+    }
+    
+    .login-button:hover {
+        background-color: #3a7bc8;
+    }
+    
+    .login-footer {
+        text-align: center;
+        margin-top: 25px;
+        color: #666;
+        font-size: 14px;
+    }
+    
+    .register-link {
+        color: #4a90e2;
+        text-decoration: none;
+        font-weight: 500;
+    }
+    
+    .register-link:hover {
+        text-decoration: underline;
+    }
+</style>
+{% endblock %}
